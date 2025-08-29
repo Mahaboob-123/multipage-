@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - FashionHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #ff5722;
+        }
+        
+        /* Header Styles */
+        .about-header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .about-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .logo span {
+            color: #ff5722;
+        }
+        
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .cart-icon {
+            position: relative;
+            font-size: 20px;
+            color: #333;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #ff5722;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Hero Section */
+        .about-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin-bottom: 60px;
+        }
+        
+        .about-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .about-hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Main Content */
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+        
+        /* Our Story Section */
+        .our-story {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+        
+        .story-content {
+            flex: 1;
+        }
+        
+        .story-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .story-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #333;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: #ff5722;
+        }
+        
+        .section-text {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        /* Mission & Values */
+        .mission-values {
+            margin-bottom: 80px;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .value-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .value-icon {
+            font-size: 40px;
+            color: #ff5722;
+            margin-bottom: 20px;
+        }
+        
+        .value-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        /* Team Section */
+        .our-team {
+            margin-bottom: 80px;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .team-member {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        
+        .member-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .member-info {
+            padding: 20px;
+        }
+        
+        .member-name {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .member-position {
+            font-size: 14px;
+            color: #ff5722;
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: #555;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #ff5722;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .our-story {
+                flex-direction: column;
+            }
+            
+            .story-image {
+                order: -1;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .about-hero h1 {
+                font-size: 36px;
+            }
+            
+            .about-hero p {
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-hero h1 {
+                font-size: 32px;
+            }
+            
+            .about-hero p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="about-header">
+        <nav class="about-nav">
+            <a href="index.html" class="logo">Fashion<span>Hub</span></a>
+            <div class="nav-actions">
+                <a href="login.html" class="login-link">Login</a>
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <h1>Our Story</h1>
+        <p>Discover the passion and dedication behind FashionHub that makes us different</p>
+    </section>
+    
+    <!-- Main Content -->
+    <div class="about-container">
+        <!-- Our Story Section -->
+        <section class="our-story">
+            <div class="story-content">
+                <h2 class="section-title">Who We Are</h2>
+                <p class="section-text">
+                    Founded in 2020, FashionHub began as a small boutique with a big dream - to make high-quality fashion accessible to everyone. 
+                    What started as a single store in Hyderabad has now grown into one of India's fastest-growing online fashion destinations.
+                </p>
+                <p class="section-text">
+                    Our journey has been fueled by our love for fashion and our commitment to customer satisfaction. 
+                    We carefully curate each collection to bring you the latest trends at affordable prices without compromising on quality.
+                </p>
+                <p class="section-text">
+                    Today, we serve thousands of happy customers across India, and our family continues to grow. 
+                    We're proud to be more than just a store - we're a community of fashion lovers.
+                </p>
+            </div>
+            <div class="story-image">
+                <img src="https://plus.unsplash.com/premium_photo-1724220736652-8514fef4f067?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzd8fGZhc2hpb24lMjBodWIlMjA0a3xlbnwwfHwwfHx8MA%3D%3D" alt="Our Store">
+            </div>
+        </section>
+        
+        <!-- Mission & Values -->
+        <section class="mission-values">
+            <h2 class="section-title">Our Mission & Values</h2>
+            <p class="section-text">
+                At FashionHub, we believe fashion should be fun, accessible, and sustainable. 
+                Our mission is to empower you to express your unique style while making a positive impact on the world.
+            </p>
+            
+            <div class="values-grid">
+                <!-- Value 1 -->
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="value-title">Customer First</h3>
+                    <p class="section-text">
+                        Your satisfaction is our top priority. We go above and beyond to ensure you love every purchase.
+                    </p>
+                </div>
+                
+                <!-- Value 2 -->
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="value-title">Sustainable Fashion</h3>
+                    <p class="section-text">
+                        We're committed to eco-friendly practices and ethical sourcing across our supply chain.
+                    </p>
+                </div>
+                
+                <!-- Value 3 -->
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="value-title">Innovation</h3>
+                    <p class="section-text">
+                        We constantly evolve to bring you fresh styles and the best shopping experience.
+                    </p>
+                </div>
+                
+                <!-- Value 4 -->
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <h3 class="value-title">Affordable Luxury</h3>
+                    <p class="section-text">
+                        Premium quality doesn't have to come with a premium price tag. We make luxury accessible.
+                    </p>
+                </div>
+                
+                <!-- Value 5 -->
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 class="value-title">Community</h3>
+                    <p class="section-text">
+                        We support local artisans and give back to the communities we serve.
+                    </p>
+                </div>
+                
+                <!-- Value 6 -->
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="value-title">Quality</h3>
+                    <p class="section-text">
+                        Every product is carefully selected to meet our high standards of craftsmanship.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Our Team -->
+        <section class="our-team">
+            <h2 class="section-title">Meet Our Team</h2>
+            <p class="section-text">
+                Behind FashionHub is a team of passionate individuals dedicated to bringing you the best fashion experience.
+            </p>
+            
+            <div class="team-grid">
+                <!-- Team Member 1 -->
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1606234922842-1d73b0b9a28e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fGZhc2hpb24lMjBodWIlMjA0a3xlbnwwfHwwfHx8MA%3D%3D" alt="Priya Sharma" class="member-image">
+                    <div class="member-info">
+                        <h3 class="member-name">nitish agarwal</h3>
+                        <p class="member-position">Founder & CEO</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Rahul Patel" class="member-image">
+                    <div class="member-info">
+                        <h3 class="member-name">Rahul Patel</h3>
+                        <p class="member-position">Creative Director</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Ananya Reddy" class="member-image">
+                    <div class="member-info">
+                        <h3 class="member-name">Ananya Reddy</h3>
+                        <p class="member-position">Head of Design</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 4 -->
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Arjun Kapoor" class="member-image">
+                    <div class="member-info">
+                        <h3 class="member-name">Arjun Kapoor</h3>
+                        <p class="member-position">Customer Experience</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // Load cart count from localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedCount = localStorage.getItem('cartCount');
+            
+            if (savedCount) {
+                document.querySelector('.cart-count').textContent = savedCount;
+            }
+        });
+    </script>
+</body>
+</html>

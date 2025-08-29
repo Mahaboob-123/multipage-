@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Collection - FashionHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #ff5722;
+        }
+        
+        /* Header Styles */
+        .men-header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .men-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .logo span {
+            color: #ff5722;
+        }
+        
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .cart-icon {
+            position: relative;
+            font-size: 20px;
+            color: #333;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #ff5722;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Filter Section */
+        .filters {
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-label {
+            font-weight: 600;
+        }
+        
+        .filter-select {
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            background-color: white;
+        }
+        
+        /* Product Grid */
+        .products-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+        
+        .product-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .product-price {
+            font-weight: 700;
+            color: #ff5722;
+            margin-bottom: 15px;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #ff5722;
+        }
+        
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff5722;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 14px;
+            margin-right: 5px;
+        }
+        
+        /* Responsive Grid */
+        @media (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .page-header h1 {
+                font-size: 32px;
+            }
+            
+            .filters {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-image {
+                height: 200px;
+            }
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 4px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="men-header">
+        <nav class="men-nav">
+            <a href="index.html" class="logo">Fashion<span>Hub</span></a>
+            <div class="nav-actions">
+                <a href="login.html" class="login-link">Login</a>
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Men's Collection</h1>
+        <p>Discover our premium range of men's clothing, footwear and accessories</p>
+    </section>
+    
+    <!-- Filters -->
+    <div class="filters">
+        <div class="filter-group">
+            <span class="filter-label">Sort By:</span>
+            <select class="filter-select" id="sort-by">
+                <option value="popular">Popular</option>
+                <option value="newest">Newest</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <span class="filter-label">Category:</span>
+            <select class="filter-select" id="category">
+                <option value="all">All</option>
+                <option value="shirts">Shirts</option>
+                <option value="t-shirts">T-Shirts</option>
+                <option value="jeans">Jeans</option>
+                <option value="footwear">Footwear</option>
+                <option value="accessories">Accessories</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <span class="filter-label">Size:</span>
+            <select class="filter-select" id="size">
+                <option value="all">All</option>
+                <option value="s">S</option>
+                <option value="m">M</option>
+                <option value="l">L</option>
+                <option value="xl">XL</option>
+                <option value="xxl">XXL</option>
+            </select>
+        </div>
+    </div>
+    
+    <!-- Product Grid -->
+    <div class="products-container">
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div style="position: relative;">
+                    <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Men's Shirt" class="product-image">
+                    <span class="discount-badge">30% OFF</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Formal Cotton Shirt</h3>
+                    <p class="product-price">
+                        <span class="original-price">₹1,999</span>
+                        ₹1,399
+                    </p>
+                    <button class="add-to-cart" data-id="m1" data-name="Formal Cotton Shirt" data-price="1399">ADD TO CART</button>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div style="position: relative;">
+                    <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Men's Sunglasses" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Aviator Sunglasses</h3>
+                    <p class="product-price">₹1,799</p>
+                    <button class="add-to-cart" data-id="m2" data-name="Aviator Sunglasses" data-price="1799">ADD TO CART</button>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div style="position: relative;">
+                    <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Denim Jacket" class="product-image">
+                    <span class="discount-badge">20% OFF</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Denim Jacket</h3>
+                    <p class="product-price">
+                        <span class="original-price">₹2,999</span>
+                        ₹2,399
+                    </p>
+                    <button class="add-to-cart" data-id="m3" data-name="Denim Jacket" data-price="2399">ADD TO CART</button>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div style="position: relative;">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Running Shoes" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Running Shoes</h3>
+                    <p class="product-price">₹3,999</p>
+                    <button class="add-to-cart" data-id="m4" data-name="Running Shoes" data-price="3999">ADD TO CART</button>
+                </div>
+            </div>
+            
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div style="position: relative;">
+                    <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Casual T-Shirt" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Casual T-Shirt</h3>
+                    <p class="product-price">₹899</p>
+                    <button class="add-to-cart" data-id="m5" data-name="Casual T-Shirt" data-price="899">ADD TO CART</button>
+                </div>
+            </div>
+            
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div style="position: relative;">
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Smart Watch" class="product-image">
+                    <span class="discount-badge">15% OFF</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Smart Watch</h3>
+                    <p class="product-price">
+                        <span class="original-price">₹6,999</span>
+                        ₹5,949
+                    </p>
+                    <button class="add-to-cart" data-id="m6" data-name="Smart Watch" data-price="5949">ADD TO CART</button>
+                </div>
+            </div>
+            
+            <!-- Product 7 -->
+            <div class="product-card">
+                <div style="position: relative;">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Formal Shirt" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Formal Shirt</h3>
+                    <p class="product-price">₹1,299</p>
+                    <button class="add-to-cart" data-id="m7" data-name="Formal Shirt" data-price="1299">ADD TO CART</button>
+                </div>
+            </div>
+            
+            <!-- Product 8 -->
+            <div class="product-card">
+                <div style="position: relative;">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Leather Wallet" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Leather Wallet</h3>
+                    <p class="product-price">₹1,499</p>
+                    <button class="add-to-cart" data-id="m8" data-name="Leather Wallet" data-price="1499">ADD TO CART</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Item added to cart!</div>
+    
+    <script>
+        // Cart functionality
+        let cart = [];
+        let cartCount = 0;
+        
+        // Add to cart function
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = this.getAttribute('data-id');
+                const productName = this.getAttribute('data-name');
+                const productPrice = parseFloat(this.getAttribute('data-price'));
+                
+                // Check if product already in cart
+                const existingItem = cart.find(item => item.id === productId);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: productId,
+                        name: productName,
+                        price: productPrice,
+                        quantity: 1
+                    });
+                }
+                
+                // Update cart count
+                cartCount += 1;
+                document.querySelector('.cart-count').textContent = cartCount;
+                
+                // Save to localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+                localStorage.setItem('cartCount', cartCount);
+                
+                // Show toast notification
+                showToast(`${productName} added to cart`);
+            });
+        });
+        
+        // Toast notification function
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Load cart from localStorage on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedCart = localStorage.getItem('cart');
+            const savedCount = localStorage.getItem('cartCount');
+            
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+            }
+            
+            if (savedCount) {
+                cartCount = parseInt(savedCount);
+                document.querySelector('.cart-count').textContent = cartCount;
+            }
+            
+            // Filter functionality would be implemented here
+            // Currently the filter dropdowns are for UI only
+        });
+    </script>
+</body>
+</html>
